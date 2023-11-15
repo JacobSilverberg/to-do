@@ -16,7 +16,7 @@
   \*************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, `.hello {\n    color: red;\n}`, \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://restaurant/./src/style.css?./node_modules/css-loader/dist/cjs.js");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/noSourceMaps.js */ \"./node_modules/css-loader/dist/runtime/noSourceMaps.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);\n// Imports\n\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, `#content {\n    display: grid;\n    grid-template-columns: 1fr 7fr;\n}\n\n.header-container {\n    grid-column: 1 / 3;\n\n    background-color: aqua;\n}\n\n.sidebar-container {\n    grid-column: 1 / 2;\n\n    background-color: beige;\n}\n\n.main-container {\n    grid-column: 2 / 3;\n\n    background-color: blueviolet;\n}\n\n.edit-button {\n    height: 25px;\n}\n\n.delete-button {\n    height: 25px;\n}`, \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://restaurant/./src/style.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -110,13 +110,73 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/create_element.js":
+/*!*******************************!*\
+  !*** ./src/create_element.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createElement: () => (/* binding */ createElement),\n/* harmony export */   createImage: () => (/* binding */ createImage)\n/* harmony export */ });\nfunction createElement(elementType, text, parent, attributes) {\n    const element = document.createElement(elementType);\n    if (text) {\n        element.textContent = text;\n    }\n    if (attributes) {\n        for (const key in attributes) {\n            element.setAttribute(key, attributes[key]);\n        }\n    }\n    parent.appendChild(element);\n    return element;\n}\n\nfunction createImage(image, parent, attributes) {\n    const newImage = new Image();\n    newImage.src = image;\n    if (attributes) {\n        for (const key in attributes) {\n            newImage.setAttribute(key, attributes[key]);\n        }\n    }\n    parent.appendChild(newImage);\n}\n\n\n\n//# sourceURL=webpack://restaurant/./src/create_element.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\nfunction component() {\n    const element = document.createElement('div');\n    const textHere = document.createElement('p');\n    textHere.textContent = \"Once again.\";\n\n    element.appendChild(textHere);\n    element.setAttribute('class', 'hello');\n\n  \n    return element;\n}\n  \n    const content = document.querySelector('#content');\n    content.appendChild(component());  \n\n\n    console.log(\"How we doing?\");\n\n//# sourceURL=webpack://restaurant/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout */ \"./src/layout.js\");\n/* harmony import */ var _task_logic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task_logic */ \"./src/task_logic.js\");\n\n\n\n\n(0,_layout__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n\ndocument.querySelector('#add-button').addEventListener('click', _task_logic__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\n\n//# sourceURL=webpack://restaurant/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/layout.js":
+/*!***********************!*\
+  !*** ./src/layout.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _create_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create_element */ \"./src/create_element.js\");\n/* harmony import */ var _add_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./add.svg */ \"./src/add.svg\");\n\n\n\nfunction createHeader() {\n    const headerContainer = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', null, document.querySelector('#content'), {\"class\": \"header-container\"});\n    const headerText = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h1', 'Header Text Here', headerContainer);\n}\n\nfunction createSidebar() {\n    const sidebarContainer = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', null, document.querySelector('#content'), {\"class\": \"sidebar-container\"});\n    const homeText = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h1', 'Home', sidebarContainer, {\"class\": \"home\"});\n    const todayText = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h1', 'Today', sidebarContainer, {\"class\": \"today\"});\n    const weekText = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h1', 'Week', sidebarContainer, {\"class\": \"week\"});\n    const projectsText = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h1', 'Projects', sidebarContainer, {\"class\": \"projects\"});\n\n    const addButton = new Image();\n    addButton.src = _add_svg__WEBPACK_IMPORTED_MODULE_1__;\n    addButton.setAttribute('id', 'add-button');\n    sidebarContainer.appendChild(addButton);\n}\n\nfunction createMain() {\n    const mainContainer = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', null, document.querySelector('#content'), {\"class\": \"main-container\"});\n    const mainText = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('h1', 'Main Text Here', mainContainer);\n}\n\nfunction generateLayout() {\n    createHeader();\n    createSidebar();\n    createMain();\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (generateLayout);\n\n//# sourceURL=webpack://restaurant/./src/layout.js?");
+
+/***/ }),
+
+/***/ "./src/task_logic.js":
+/*!***************************!*\
+  !*** ./src/task_logic.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _create_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create_element */ \"./src/create_element.js\");\n/* harmony import */ var _edit_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit.svg */ \"./src/edit.svg\");\n/* harmony import */ var _delete_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./delete.svg */ \"./src/delete.svg\");\n\n\n\n\n\nfunction addTask() {\n    const taskNum = document.querySelectorAll(\".task-container\");\n    console.log(taskNum);\n\n    const taskContainer = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('div', null, document.querySelector('.main-container'), {\"class\": \"task-container\", \"id\": \"new-task\"});\n    const taskText = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createElement)('p', 'text here', taskContainer, {\"class\": \"task-text\", \"id\": \"task-text-$\"});\n    const editButton = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createImage)(_edit_svg__WEBPACK_IMPORTED_MODULE_1__, taskContainer, {\"class\": \"edit-button\", \"id\": \"edit-$\"});\n    const deleteButton = (0,_create_element__WEBPACK_IMPORTED_MODULE_0__.createImage)(_delete_svg__WEBPACK_IMPORTED_MODULE_2__, taskContainer, {\"class\": \"delete-button\", \"id\": \"delete-$\"});\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addTask);\n\n//# sourceURL=webpack://restaurant/./src/task_logic.js?");
+
+/***/ }),
+
+/***/ "./src/add.svg":
+/*!*********************!*\
+  !*** ./src/add.svg ***!
+  \*********************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"057fbbe813d06c74ac0c.svg\";\n\n//# sourceURL=webpack://restaurant/./src/add.svg?");
+
+/***/ }),
+
+/***/ "./src/delete.svg":
+/*!************************!*\
+  !*** ./src/delete.svg ***!
+  \************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"bde675c38d54979f589e.svg\";\n\n//# sourceURL=webpack://restaurant/./src/delete.svg?");
+
+/***/ }),
+
+/***/ "./src/edit.svg":
+/*!**********************!*\
+  !*** ./src/edit.svg ***!
+  \**********************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"8421b7fc701a0f1a93be.svg\";\n\n//# sourceURL=webpack://restaurant/./src/edit.svg?");
 
 /***/ })
 
@@ -171,6 +231,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -185,6 +257,29 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */

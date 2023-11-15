@@ -1,19 +1,7 @@
 import './style.css';
+import generateLayout from './layout';
+import addTask from './task_logic';
 
-function component() {
-    const element = document.createElement('div');
-    const textHere = document.createElement('p');
-    textHere.textContent = "Once again.";
+generateLayout();
 
-    element.appendChild(textHere);
-    element.setAttribute('class', 'hello');
-
-  
-    return element;
-}
-  
-    const content = document.querySelector('#content');
-    content.appendChild(component());  
-
-
-    console.log("How we doing?");
+document.querySelector('#add-button').addEventListener('click', addTask);
