@@ -28,3 +28,11 @@
 .delete-button {
     height: 25px;
 }
+
+.add-task-container {
+    display: none;
+}
+
+.task-button {
+    height: 20px;
+}
