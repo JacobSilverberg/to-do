@@ -1,5 +1,5 @@
 import {createElement, createImage} from './create_element';
-import { toDoList, deleteTask, editTask } from './task_logic';
+import { toDoList, deleteTask, editTask, checkLocalStorage } from './task_logic';
 import Add from './add.svg';
 import Edit from "./edit.svg";
 import Delete from "./delete.svg";
@@ -44,6 +44,8 @@ function addTaskForm() {
 
     const addTaskSubmit = createElement('button', 'Submit', addTaskContainer, {'class': 'task-submit', 'id': 'task-submit'});
     addTaskSubmit.type = 'submit';
+
+    const addTaskClose = createElement('button', 'Close', addTaskContainer, {'class': 'task-close', 'id': 'add-task-close'});
 }
 
 function editTaskForm() {
@@ -66,6 +68,8 @@ function editTaskForm() {
 
     const editTaskSubmit = createElement('button', 'Submit', editTaskContainer, {'class': 'task-submit', 'id': 'edit-task-submit'});
     editTaskSubmit.type = 'submit';
+
+    const addTaskClose = createElement('button', 'Close', editTaskContainer, {'class': 'task-close', 'id': 'edit-task-close'});
 }
 
 function removeAllChildNodes(parent) {
@@ -96,6 +100,7 @@ function generateLayout() {
     createMain();
     addTaskForm();
     editTaskForm();
+    checkLocalStorage();
 }
 
 export { generateLayout, displayTasks }

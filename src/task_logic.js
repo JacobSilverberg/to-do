@@ -4,12 +4,23 @@ import { displayTasks } from "./layout";
 let toDoList = []
 let editIndex = null
 
+function checkLocalStorage() {
+    if (localStorage.length > 0) {
+        for (let i = 0; i < localStorage.length; i++) {
+            toDoList.push(JSON.parse(localStorage.getItem(i)));
+        }
+        displayTasks(toDoList);
+        applyTaskListeners();
+    }     
+}
+
 function displayAddTaskForm() {
     document.getElementById('add-task-container').style.display = 'block';
 }
 
 function hideAddTaskForm() {
     document.getElementById('add-task-container').style.display = 'none';
+    resetAddTask();
 }
 
 function displayEditTaskForm() {
@@ -18,6 +29,7 @@ function displayEditTaskForm() {
 
 function hideEditTaskForm() {
     document.getElementById('edit-task-container').style.display = 'none';
+    resetEditTask();
 }
 
 function saveToLocalStorage(key, value) {
@@ -37,6 +49,26 @@ function resetAddTask() {
     document.getElementById('task-date').value = "";
 }
 
+function resetEditTask() {
+    document.getElementById('edit-task-title').value = "";
+    document.getElementById('edit-task-details').value = "";
+    document.getElementById('edit-task-date').value = "";
+}
+
+function applyTaskListeners() {
+    document.querySelectorAll('[id^=editing-task]').forEach((button) => {
+        button.addEventListener('click', editTask);
+    });
+    document.querySelectorAll('[id^=delete-task]').forEach((button) => {
+        button.addEventListener('click', deleteTask);
+    });
+    document.querySelector('#add-button').addEventListener('click', displayAddTaskForm);
+    document.querySelector('#task-submit').addEventListener('click', addTask);
+    document.querySelector('#edit-task-submit').addEventListener('click', editTaskSubmit);
+    document.querySelector('#add-task-close').addEventListener('click', hideAddTaskForm);
+    document.querySelector('#edit-task-close').addEventListener('click', hideEditTaskForm);
+}
+
 function addTask() {
     let taskDict = {};
     taskDict['task-title'] = document.getElementById('task-title').value;
@@ -53,19 +85,8 @@ function addTask() {
     applyTaskListeners();
 }
 
-function applyTaskListeners() {
-    document.querySelectorAll('[id^=editing-task]').forEach((button) => {
-        button.addEventListener('click', editTask);
-    });
-    document.querySelectorAll('[id^=delete-task]').forEach((button) => {
-        button.addEventListener('click', deleteTask);
-    });
-}
-
 function editTask() {
-    console.log(this.id);
-    let index = this.id.split('k-').pop();
-    editIndex = index;
+    editIndex = this.id.split('k-').pop();
     displayEditTaskForm();
     document.getElementById('edit-task-title').value = toDoList[editIndex]['task-title'];
     document.getElementById('edit-task-details').value = toDoList[editIndex]['task-details'];
@@ -74,18 +95,13 @@ function editTask() {
 }
 
 function editTaskSubmit() {
-    console.log(editIndex);
-
     let taskDict = {};
     taskDict['task-title'] = document.getElementById('edit-task-title').value;
     if (document.getElementById('edit-task-details').value) {
         taskDict['task-details'] = document.getElementById('edit-task-details').value;
     };
     taskDict['task-date'] = document.getElementById('edit-task-date').value;
-
-
-    console.log(taskDict);
-
+    
     saveToLocalStorage(editIndex, taskDict);
     toDoList[editIndex] = taskDict;
     hideEditTaskForm();
@@ -102,4 +118,4 @@ function deleteTask() {
     applyTaskListeners();
 }
 
-export {addTask, displayAddTaskForm, deleteTask, editTaskSubmit, toDoList};
+export {addTask, displayAddTaskForm, deleteTask, editTaskSubmit, checkLocalStorage, toDoList};
