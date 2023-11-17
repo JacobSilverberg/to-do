@@ -33,6 +33,10 @@
     display: none;
 }
 
+.edit-task-container {
+    display: none;
+}
+
 .task-button {
     height: 20px;
 }

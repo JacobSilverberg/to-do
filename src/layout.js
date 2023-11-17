@@ -16,10 +16,7 @@ function createSidebar() {
     const weekText = createElement('h1', 'Week', sidebarContainer, {"class": "week"});
     const projectsText = createElement('h1', 'Projects', sidebarContainer, {"class": "projects"});
 
-    const addButton = new Image();
-    addButton.src = Add;
-    addButton.setAttribute('id', 'add-button');
-    sidebarContainer.appendChild(addButton);
+    const addButton = createImage(Add, sidebarContainer, {'id': 'add-button'});
 }
 
 function createMain() {
@@ -49,6 +46,28 @@ function addTaskForm() {
     addTaskSubmit.type = 'submit';
 }
 
+function editTaskForm() {
+    const editTaskContainer = createElement('div', null, document.querySelector('.main-container'), {'class': 'edit-task-container', 'id': 'edit-task-container'});
+
+    const editTaskTitleLabel = createElement('label', 'Title:', editTaskContainer, {'class': 'task-label', 'for': 'edit-task-title'});
+    const editTaskTitle = createElement('input', null, editTaskContainer, {'class': 'task-title', 'id': 'edit-task-title'});
+    editTaskTitle.type = 'text';
+    editTaskTitle.required = true;
+
+    const editTaskDetailsLabel = createElement('label', 'Details:', editTaskContainer, {'class': 'task-label', 'for': 'edit-task-details'});
+    const editTaskDetails = createElement('input', null, editTaskContainer, {'class': 'task-details', 'id': 'edit-task-details'});
+    editTaskDetails.type = 'text';
+    editTaskDetails.required = false;
+
+    const editTaskDueDateLabel = createElement('label', 'Due Date:', editTaskContainer, {'class': 'task-label', 'for': 'edit-task-date'});
+    const editTaskDueDate = createElement('input', null, editTaskContainer, {'class': 'task-date', 'id': 'edit-task-date'});
+    editTaskDueDate.type = 'date';
+    editTaskDueDate.required = true;
+
+    const editTaskSubmit = createElement('button', 'Submit', editTaskContainer, {'class': 'task-submit', 'id': 'edit-task-submit'});
+    editTaskSubmit.type = 'submit';
+}
+
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -65,13 +84,9 @@ function displayTasks(array) {
         };
         const taskDate = createElement('p', `${toDo['task-date']}`, taskContainer, {'class': 'task-date-display'});
 
-        const editImage = createImage(Edit, taskContainer, {'class': 'task-button', 'id': `edit-task-${index}`});
+        const editImage = createImage(Edit, taskContainer, {'class': 'task-button', 'id': `editing-task-${index}`});
         const deleteImage = createImage(Delete, taskContainer, {'class': 'task-button', 'id': `delete-task-${index}`});
     })
-}
-
-function testees() {
-    console.log('testing')
 }
 
 
@@ -80,6 +95,7 @@ function generateLayout() {
     createSidebar();
     createMain();
     addTaskForm();
+    editTaskForm();
 }
 
 export { generateLayout, displayTasks }
