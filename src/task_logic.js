@@ -1,5 +1,5 @@
 import {createElement, createImage} from "./create_element";
-import { displayTasks } from "./layout";
+import { displayTasks, displayTasksToday, displayTasksWeek } from "./layout";
 
 let toDoList = []
 let editIndex = null
@@ -67,6 +67,10 @@ function applyTaskListeners() {
     document.querySelector('#edit-task-submit').addEventListener('click', editTaskSubmit);
     document.querySelector('#add-task-close').addEventListener('click', hideAddTaskForm);
     document.querySelector('#edit-task-close').addEventListener('click', hideEditTaskForm);
+
+    document.querySelector('#home').addEventListener('click', displayTasks);
+    document.querySelector('#today').addEventListener('click', displayTasksToday);
+    document.querySelector('#week').addEventListener('click', displayTasksWeek);
 }
 
 function addTask() {
@@ -76,11 +80,16 @@ function addTask() {
         taskDict['task-details'] = document.getElementById('task-details').value;
     };
     taskDict['task-date'] = document.getElementById('task-date').value;
+
+    if (taskDict['task-title'] == "" || taskDict['task-date'] == "") {
+        alert('Please fill out all required fields.');
+        return false;
+    }
     
     toDoList.push(taskDict);
     saveToLocalStorage((toDoList.length - 1), taskDict);
     hideAddTaskForm();
-    displayTasks(toDoList);
+    displayTasks();
     resetAddTask();
     applyTaskListeners();
 }
@@ -89,7 +98,11 @@ function editTask() {
     editIndex = this.id.split('k-').pop();
     displayEditTaskForm();
     document.getElementById('edit-task-title').value = toDoList[editIndex]['task-title'];
-    document.getElementById('edit-task-details').value = toDoList[editIndex]['task-details'];
+    if (toDoList[editIndex]['task-details'] == undefined) {
+        document.getElementById('edit-task-details').value = "";
+    } else {
+        document.getElementById('edit-task-details').value = toDoList[editIndex]['task-details'];
+    }
     document.getElementById('edit-task-date').value = toDoList[editIndex]['task-date'];
     return;
 }
@@ -105,7 +118,7 @@ function editTaskSubmit() {
     saveToLocalStorage(editIndex, taskDict);
     toDoList[editIndex] = taskDict;
     hideEditTaskForm();
-    displayTasks(toDoList);
+    displayTasks();
     applyTaskListeners();
 }
 

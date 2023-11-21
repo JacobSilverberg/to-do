@@ -1,42 +1,254 @@
+/*
+	Light: #f2f9f1; 
+	: #ddeedf; 
+	: #b6cdbd; 
+	Dark: #5c715e; 
+*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+/* 
+body {
+    height: 100vh;
+    width: 100vw;
+} */
+
+* {
+    box-sizing: border-box;
+}
+
 #content {
     display: grid;
     grid-template-columns: 1fr 7fr;
+
+    height: 100vh;
+    width: 100vw;
 }
 
 .header-container {
     grid-column: 1 / 3;
 
-    background-color: aqua;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 10px;
+    flex-wrap: nowrap;
+
+    height: 150px;
+
+    color: #f2f9f1;
+    background-color: #5c715e;
+}
+
+#header-logo {
+    fill: #f2f9f1 !important;
+    height: 5rem;
+}
+
+#header-text {
+    margin: 5px;
+
+    white-space: nowrap;
+
+    font-family: "Shrikhand";
+    font-size: 5rem;
+
 }
 
 .sidebar-container {
     grid-column: 1 / 2;
 
-    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: calc(100vh - 150px);
+    width: 200px;
+    padding: 0 20px 0 20px;
+
+    font-family: "Laila";
+    font-size: 1rem;
+    background-color: #b6cdbd;
+}
+
+.sidebar-title {
+    font-weight: 900;
+}
+
+.sidebar-title:hover {
+    font-style: italic;
+}
+
+#projects {
+    margin-bottom: -10px;
+}
+
+.new-project-container {
+    display: flex;
+    align-items: center;
+    
+    margin: 0;
+}
+
+.new-project-image {
+    height: 1.5rem;
+}
+
+#add-button {
+    height: 5rem;
+    width: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0 20vh 0;
+
+    font-family: "Laila";
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#add-button-icon:hover {
+    transition: all 900ms ease;
+    transform: rotate(180deg);
+}
+
+#add-button-text {
+    margin: 0;
 }
 
 .main-container {
     grid-column: 2 / 3;
 
-    background-color: blueviolet;
+    height: calc(100vh - 150px);
+    position: relative;
+
+    font-family: "Laila";
+    background-color: #ddeedf;
+}
+
+.task-card {
+    margin: 10px;
+    padding: 0 10px 0 10px;
+    width: max(400px, 40vw);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 1px solid #5c715e;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px #5c715e;
+}
+
+.task-title-display {
+    margin: 10px 0 10px 0;
+
+    font-size: 2rem;
+}
+
+.task-details-display {
+    margin: 10px;
+}
+
+.date-icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-date-display {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.task-button {
+    height: 2rem;
+    margin: 10px;
 }
 
 .edit-button {
-    height: 25px;
+    height: 1.5rem;
 }
 
 .delete-button {
-    height: 25px;
+    height: 1.5rem;
 }
 
 .add-task-container {
     display: none;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+
+    width: 400px;
+    height: 400px;
+
+    margin: -400px 0 0 -200px;
+
+    background-color: #5c715e;
+
+    border: 1px solid #5c715e;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px #5c715e;
 }
+
+.add-task-sub-container{
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.task-label {
+    font-size: 2rem;
+}
+
+#task-title, #task-details, #task-date, #edit-task-title, #edit-task-details, #edit-task-date {
+    width: 100%;
+    padding: 12px 20px;
+    margin: -8px 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+}
+
+#task-submit, #add-task-close, #edit-task-submit, #edit-task-close {
+    background-color: #ddeedf;
+    border: 1px solid black;
+    height: 30px;
+    margin: 4px;
+    border-radius: 8px;
+}
+
+#task-submit:hover, #add-task-close:hover{
+    background-color: #f2f9f1;
+}
+
 
 .edit-task-container {
     display: none;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+
+    width: 400px;
+    height: 400px;
+
+    margin: -400px 0 0 -200px;
+
+    background-color: #5c715e;
+
+    border: 1px solid #5c715e;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px #5c715e;
 }
 
-.task-button {
-    height: 20px;
+.edit-task-sub-container{
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
 }
+
