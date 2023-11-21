@@ -1,17 +1,26 @@
 import {createElement, createImage} from "./create_element";
-import { displayTasks, displayTasksToday, displayTasksWeek } from "./layout";
+import { displayProjectsSidebar, displaySelectedProject, displayTasks, displayTasksToday, displayTasksWeek, populateProjectDropdown } from "./layout";
 
-let toDoList = []
-let editIndex = null
+let toDoList = [];
+let projectList = [];
+let editIndex = null;
 
 function checkLocalStorage() {
-    if (localStorage.length > 0) {
+    if (localStorage.length == 0) {
+        saveToLocalStorage('projects', []);
+    }
+    else if (localStorage.length >= 1) {
         for (let i = 0; i < localStorage.length; i++) {
-            toDoList.push(JSON.parse(localStorage.getItem(i)));
+            if (localStorage.getItem(i) == null) {
+                projectList = JSON.parse(localStorage.getItem('projects'));
+            } 
+            else {
+                toDoList.push(JSON.parse(localStorage.getItem(i)));
+            }
         }
         displayTasks(toDoList);
-        applyTaskListeners();
-    }     
+    }
+    applyTaskListeners();
 }
 
 function displayAddTaskForm() {
@@ -32,6 +41,14 @@ function hideEditTaskForm() {
     resetEditTask();
 }
 
+function displayAddProjectForm() {
+    document.getElementById('add-project-form-container').style.display = 'block';
+}
+
+function hideAddProjectForm() {
+    document.getElementById('add-project-form-container').style.display = 'none';
+}
+
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
@@ -41,6 +58,7 @@ function updateLocalStorage() {
     for (let i = 0; i < toDoList.length; i++) {
         localStorage.setItem(i, JSON.stringify(toDoList[i]));
     }
+    localStorage.setItem('projects', JSON.stringify(projectList));
 }
 
 function resetAddTask() {
@@ -71,6 +89,15 @@ function applyTaskListeners() {
     document.querySelector('#home').addEventListener('click', displayTasks);
     document.querySelector('#today').addEventListener('click', displayTasksToday);
     document.querySelector('#week').addEventListener('click', displayTasksWeek);
+
+    document.querySelectorAll('.project-title').forEach((project) => {
+        project.addEventListener('click', displaySelectedProject);
+    });
+    document.querySelectorAll('.delete-project-icon').forEach((project) => {
+        project.addEventListener('click', deleteProject);
+    });
+    document.querySelector('.new-project-container').addEventListener('click', displayAddProjectForm)
+    document.querySelector('#add-project-submit').addEventListener('click', addProject);
 }
 
 function addTask() {
@@ -79,6 +106,7 @@ function addTask() {
     if (document.getElementById('task-details').value) {
         taskDict['task-details'] = document.getElementById('task-details').value;
     };
+    taskDict['task-project'] = document.getElementById('task-project-selector').value;
     taskDict['task-date'] = document.getElementById('task-date').value;
 
     if (taskDict['task-title'] == "" || taskDict['task-date'] == "") {
@@ -103,6 +131,7 @@ function editTask() {
     } else {
         document.getElementById('edit-task-details').value = toDoList[editIndex]['task-details'];
     }
+    document.getElementById('edit-task-project-selector').value = toDoList[editIndex]['task-project']
     document.getElementById('edit-task-date').value = toDoList[editIndex]['task-date'];
     return;
 }
@@ -113,6 +142,7 @@ function editTaskSubmit() {
     if (document.getElementById('edit-task-details').value) {
         taskDict['task-details'] = document.getElementById('edit-task-details').value;
     };
+    taskDict['task-project'] = document.getElementById('edit-task-project-selector').value;
     taskDict['task-date'] = document.getElementById('edit-task-date').value;
     
     saveToLocalStorage(editIndex, taskDict);
@@ -131,4 +161,34 @@ function deleteTask() {
     applyTaskListeners();
 }
 
-export {addTask, displayAddTaskForm, deleteTask, editTaskSubmit, checkLocalStorage, toDoList};
+function addProject() {
+    let projectName = document.getElementById('add-project-input').value;
+
+    if (projectName == "") {
+        alert('Please enter a project name.');
+        return false;
+    }
+    
+    projectList.push(projectName);
+    localStorage.setItem('projects', JSON.stringify(projectList));
+    hideAddProjectForm();
+    displayProjectsSidebar();
+    applyTaskListeners();
+    populateProjectDropdown();
+}
+
+function deleteProject() {
+    console.log(this.parentElement.firstChild.textContent);
+    let projDelete = this.parentElement.firstChild.textContent;
+    let projIndex = projectList.indexOf(projDelete);
+    console.log(projIndex);
+    if (projIndex > -1) {
+        projectList.splice(projIndex, 1);
+    }
+    updateLocalStorage();
+    displayProjectsSidebar();
+    applyTaskListeners();
+    populateProjectDropdown();
+}
+
+export {addTask, displayAddTaskForm, deleteTask, editTaskSubmit, checkLocalStorage, applyTaskListeners, toDoList, projectList};

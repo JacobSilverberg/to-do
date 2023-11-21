@@ -84,6 +84,11 @@ body {
     margin-bottom: -10px;
 }
 
+.project-container {
+    margin-left: 8px;
+    text-align: left;
+}
+
 .new-project-container {
     display: flex;
     align-items: center;
@@ -93,6 +98,28 @@ body {
 
 .new-project-image {
     height: 1.5rem;
+}
+
+.add-project-form-container {
+    display: none;
+}
+
+#add-project-input {
+    width: 150px;
+    height: 30px;
+    background-color: #ddeedf;
+    border-radius: 6px;
+    border: none;
+    margin: 4px 4px 4px 0;
+}
+
+#add-project-submit {
+    color: white;
+    background-color: #5c715e;
+    border: 1px solid black;
+    height: 30px;
+    margin: 4px 4px 4px 0;
+    border-radius: 8px;
 }
 
 #add-button {
@@ -174,17 +201,17 @@ body {
     height: 1.5rem;
 }
 
-.add-task-container {
+.add-task-container, .edit-task-container {
     display: none;
     position: absolute;
     z-index: 10;
     top: 50%;
     left: 50%;
 
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
 
-    margin: -400px 0 0 -200px;
+    margin: -500px 0 0 -200px;
 
     background-color: #5c715e;
 
@@ -193,8 +220,8 @@ body {
     box-shadow: 10px 5px 5px #5c715e;
 }
 
-.add-task-sub-container{
-    height: 25%;
+.add-task-sub-container, .edit-task-sub-container {
+    height: 20%;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -202,15 +229,31 @@ body {
 
 .task-label {
     font-size: 2rem;
+    padding-bottom: 4px;
 }
 
-#task-title, #task-details, #task-date, #edit-task-title, #edit-task-details, #edit-task-date {
+#task-title, #task-details, #task-date, #task-project-selector, #edit-task-project-selector, #edit-task-title, #edit-task-details, #edit-task-date {
     width: 100%;
     padding: 12px 20px;
     margin: -8px 0;
     box-sizing: border-box;
     border-radius: 8px;
     border: none;
+}
+
+.project-display {
+    font-style: italic;
+}
+
+.project-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete-project-icon {
+    height: 1.5rem;
+    margin-right: 20px;
 }
 
 #task-submit, #add-task-close, #edit-task-submit, #edit-task-close {
@@ -226,7 +269,7 @@ body {
 }
 
 
-.edit-task-container {
+/* .edit-task-container {
     display: none;
     position: absolute;
     z-index: 10;
@@ -243,12 +286,12 @@ body {
     border: 1px solid #5c715e;
     border-radius: 10px;
     box-shadow: 10px 5px 5px #5c715e;
-}
+} */
 
-.edit-task-sub-container{
+/* .edit-task-sub-container{
     height: 25%;
     display: flex;
     flex-direction: column;
     padding: 10px;
-}
+} */
 
